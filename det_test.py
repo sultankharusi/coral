@@ -14,7 +14,7 @@ class detector:
 	# Specify the TensorFlow model, labels, and image
 	
 		self.model = model
-		self.label = os.path.join(script_dir, 'coco_labels.txt')
+		self.label = label
 		self.threshold = 0.65
 	
 
