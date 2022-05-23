@@ -53,10 +53,11 @@ def main():
                 buf_list.append(ll)
             np_array = np.array(buf_list) # x1,y1,x2,y2, score
             treks = tracker.update(np_array)
+
         else:
             treks = tracker.update()
-
-        cv2_im = append_objs_to_img(cv2_im, inference_size, objs, labels)
+        print("Treks", treks)
+        cv2_im = append_objs_to_img(cv2_im, inference_size, treks, labels)
         cv2.imshow('frame', cv2_im)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
