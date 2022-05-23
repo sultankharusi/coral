@@ -70,7 +70,7 @@ def append_objs_to_img(cv2_im, inference_size, objs, labels):
     height, width, channels = cv2_im.shape
     scale_x, scale_y = width / inference_size[0], height / inference_size[1]
     for obj in objs:
-        x0, y0, x1, y1 = int(scale_x/obj[0]), int(scale_y/obj[1]), int(scale_x/obj[2]), int(scale_y/obj[3])
+        x0, y0, x1, y1 = int(scale_x*obj[0]), int(scale_y*obj[1]), int(scale_x*obj[2]), int(scale_y*obj[3])
 
         cv2_im = cv2.rectangle(cv2_im, (x0, y0), (x1, y1), (0, 255, 0), 2)
         cv2_im = cv2.putText(cv2_im, str(obj[4]), (x0, y0+30),
