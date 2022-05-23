@@ -57,6 +57,7 @@ def main():
         else:
             treks = tracker.update()
         print("Treks", treks)
+        print("objects", objs)
         cv2_im = append_objs_to_img(cv2_im, inference_size, treks, labels)
         cv2.imshow('frame', cv2_im)
         if cv2.waitKey(1) & 0xFF == ord('q'):
