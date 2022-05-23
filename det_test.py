@@ -23,10 +23,10 @@ class detector:
 		self.interpreter = edgetpu.make_interpreter(self.model)
 		self.interpreter.allocate_tensors()
 
-	def imglaod(self, img_file= image_file):
+	def imglaod(self, img_file):
 		#Resize the image
-		size = common.input_size(interpreter)
-		image = Image.open(image_file).convert('RGB').resize(size, Image.ANTIALIAS)
+		size = common.input_size(self.interpreter)
+		image = Image.open(img_file).convert('RGB').resize(size, Image.ANTIALIAS)
 
 		return image
 
@@ -35,16 +35,16 @@ class detector:
 		# Run an inference
 		common.set_input(self.interpreter, image)
 		self.interpreter.invoke()
-		return interpreter
+		
 		
 	def getclas(self):
 		classes = detect.get_objects(self.interpreter, score_threshold=self.threshold)
 		return classes
 
 
-	def results(self, label_file, classes):
+	def results(self, classes):
 		# Print the result
-		labels = dataset.read_label_file(label_file)
+		labels = dataset.read_label_file(self.label)
 		
 		for c in classes:
 			print('%s: %.5f' % (labels.get(c.id, c.id), c.score))
