@@ -13,15 +13,15 @@ class detector:
 	def __init__(self, model, label):
 	# Specify the TensorFlow model, labels, and image
 	
-	self.model = model
-	self.label = os.path.join(script_dir, 'coco_labels.txt')
-	self.threshold = 0.65
+		self.model = model
+		self.label = os.path.join(script_dir, 'coco_labels.txt')
+		self.threshold = 0.65
 	
 
 	def inter_init(self):
-	# Initialize the TF interpreter
-	self.interpreter = edgetpu.make_interpreter(self.model)
-	self.interpreter.allocate_tensors()
+		# Initialize the TF interpreter
+		self.interpreter = edgetpu.make_interpreter(self.model)
+		self.interpreter.allocate_tensors()
 
 	def imglaod(self, img_file= image_file):
 		#Resize the image
