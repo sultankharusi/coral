@@ -72,7 +72,7 @@ def append_objs_to_img(cv2_im, inference_size, objs, labels):
         x0, y0, x1, y1 = int(obj[0]), int(obj[1]), int(obj[2]), int(obj[3])
 
         cv2_im = cv2.rectangle(cv2_im, (x0, y0), (x1, y1), (0, 255, 0), 2)
-        cv2_im = cv2.putText(cv2_im, obj[4], (x0, y0+30),
+        cv2_im = cv2.putText(cv2_im, str(obj[4]), (x0, y0+30),
                              cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 0, 0), 2)
     return cv2_im
 
