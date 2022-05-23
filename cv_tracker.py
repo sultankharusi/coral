@@ -22,7 +22,7 @@ def main():
     parser.add_argument('--top_k', type=int, default=3,
                         help='number of categories with highest score to display')
     parser.add_argument('--camera_idx', type=int, help='Index of which video source to use. ', default = 1)
-    parser.add_argument('--threshold', type=float, default=0.5,
+    parser.add_argument('--threshold', type=float, default=0.6,
                         help='classifier score threshold')
     args = parser.parse_args()
 
@@ -70,7 +70,7 @@ def append_objs_to_img(cv2_im, inference_size, objs, labels):
     height, width, channels = cv2_im.shape
     scale_x, scale_y = width / inference_size[0], height / inference_size[1]
     for obj in objs:
-        x0, y0, x1, y1 = int(obj[0]), int(obj[1]), int(obj[2]), int(obj[3])
+        x0, y0, x1, y1 = int(obj[0]/scale_x), int(obj[1]/scale_y), int(obj[2]/scale_x), int(obj[3]/scale_y)
 
         cv2_im = cv2.rectangle(cv2_im, (x0, y0), (x1, y1), (0, 255, 0), 2)
         cv2_im = cv2.putText(cv2_im, str(obj[4]), (x0, y0+30),
