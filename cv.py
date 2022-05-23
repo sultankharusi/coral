@@ -53,9 +53,13 @@ def main():
 
 def append_objs_to_img(cv2_im, inference_size, objs, labels):
     height, width, channels = cv2_im.shape
+    print("height", "width", height, width)
     scale_x, scale_y = width / inference_size[0], height / inference_size[1]
+    print("Scales X, Y",scale_x,scale_y)
     for obj in objs:
+        print("Object", obj)
         bbox = obj.bbox.scale(scale_x, scale_y)
+        print("box", bbox)
         x0, y0 = int(bbox.xmin), int(bbox.ymin)
         x1, y1 = int(bbox.xmax), int(bbox.ymax)
 
