@@ -7,7 +7,7 @@ args = parser.parse_args()
 #rtsp://admin:AH@198712@192.168.1.88:554/Streaming/channels/2/
 def main():
 
-	cap = cv2.VideoCapture("camera_idx")
+	cap = cv2.VideoCapture(args.camera_idx)
 	while cap.isOpened():
 	        ret, frame = cap.read()
 	        if not ret:
