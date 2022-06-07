@@ -30,12 +30,13 @@ def handle_client(conn, addr):
     connected = True
     while connected:
         msg_length = conn.recv(HEADER).decode(FORMAT) # This blocks the lines of code
-        msg_length = int(msg_length)
-        msg = conn.recv(msg_length).decode(FORMAT)
-        print("{} {}".format(addr, msg))
+        if msg_length:
+            msg_length = int(msg_length)
+            msg = conn.recv(msg_length).decode(FORMAT)
+            print("{} {}".format(addr, msg))
 
-        if msg == DISCONNECT_MESSAGE:
-            connected = False
+            if msg == DISCONNECT_MESSAGE:
+                connected = False
     conn.close()
 
 def start():
@@ -43,7 +44,7 @@ def start():
     print("[*] Listening as {}:{}".format(SERVER_HOST, SERVER_PORT))
     while True:
         conn, addr = s.accept() # This blocks the lines of code
-        thread = threading.Tread(target=handle_client, args=(conn, addr))
+        thread = threading.Thread(target=handle_client, args=(conn, addr))
         thread.start()
         print("[ACTIVE CONNECTIONS] {}".format(threading.activeCount() -1))
 
