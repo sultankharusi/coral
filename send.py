@@ -1,4 +1,3 @@
-from network import Network
 import socket
 import tqdm
 import os
