@@ -1,12 +1,11 @@
 import socket
-import tqdm
 import os
 import threading
 
 # device's IP address
-SERVER_HOST = "192.168.100.6"
+SERVER_HOST = ""
 SERVER_HOST = socket.gethostbyname(socket.gethostname())
-SERVER_PORT = 5001
+SERVER_PORT = 202
 # receive 4096 bytes each time
 HEADER = 4096
 FORMAT = "utf-8"
