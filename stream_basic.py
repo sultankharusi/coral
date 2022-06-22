@@ -2,12 +2,16 @@ import cv2
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--camera_idx', help='Index of which video source to use. ', default = 1)
+parser.add_argument('--camera_idx', help='Index of which video source to use. ', default = 0)
 args = parser.parse_args()
 #rtsp://admin:AH@198712@192.168.1.88:554/Streaming/channels/2/
+cam_id = args.camera_idx
+
+if cam_id.isnumeric():
+	cam_id = int(cam_id)
 def main():
 
-	cap = cv2.VideoCapture(args.camera_idx)
+	cap = cv2.VideoCapture(cam_id)
 	while cap.isOpened():
 	        ret, frame = cap.read()
 	        if not ret:
