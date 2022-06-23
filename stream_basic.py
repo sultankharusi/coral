@@ -2,7 +2,7 @@ import cv2
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--camera_idx', help='Index of which video source to use. ', default = 0)
+parser.add_argument('--camera_idx', help='Index of which video source to use. ', default = "0") # camera id 1 is because no 0 in the dev borad
 args = parser.parse_args()
 #rtsp://admin:AH@198712@192.168.1.88:554/Streaming/channels/2/
 cam_id = args.camera_idx
