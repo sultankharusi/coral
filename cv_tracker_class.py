@@ -39,9 +39,9 @@ class vision:
             cv2_im = frame
 
             cv2_im_rgb = cv2.cvtColor(cv2_im, cv2.COLOR_BGR2RGB)
-            cv2_im_rgb = cv2.resize(cv2_im_rgb, inference_size)
+            cv2_im_rgb = cv2.resize(cv2_im_rgb, self.inference_size)
             run_inference(self.interpreter, cv2_im_rgb.tobytes())
-            objs = get_objects(interpreter, self.threshold)[:self.top_k]
+            objs = get_objects(self.interpreter, self.threshold)[:self.top_k]
             if objs:
                 # x1,y1,x2,y2, score
                 buf_list = []
@@ -56,7 +56,7 @@ class vision:
                 treks = tracker.update()
             print("Treks", treks)
             print("objects", objs)
-            cv2_im = append_objs_to_img(cv2_im, self.inference_size, treks, self.labels)
+            cv2_im = self.append_objs_to_img(cv2_im, self.inference_size, treks, self.labels)
             cv2.imshow('frame', cv2_im)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
