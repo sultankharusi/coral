@@ -21,9 +21,10 @@ def main():
                         default=os.path.join(default_model_dir, default_labels))
     parser.add_argument('--top_k', type=int, default=3,
                         help='number of categories with highest score to display')
-    parser.add_argument('--camera_idx', help='Index of which video source to use. ', default = 1) # camera id 1 is because no 0 in the dev borad
+    parser.add_argument('--camera_idx', help='Index of which video source to use. ', default = "1") # camera id 1 is because no 0 in the dev borad
     parser.add_argument('--threshold', type=float, default=0.6,
                         help='classifier score threshold')
+
     args = parser.parse_args()
 
     cam_id = args.camera_idx
