@@ -16,12 +16,9 @@ class vision:
         self.label = label_path
         self.threshold = threshold
         self.target_filter = target_filter
-        self.top_k= 20
+        self.top_k= 22
 
-        cam_id = camera_id
-        if cam_id.is_numeric():
-            cam_id = int(cam_id)
-        self.camera_id = cam_id
+        self.camera_id = camera_id
 
         print('Loading {} with {} labels.'.format(self.model, self.label))
 
