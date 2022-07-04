@@ -23,7 +23,7 @@ class vision:
             cam_id = int(cam_id)
         self.camera_id = cam_id
 
-        print('Loading {} with {} labels.'.format(self..model, self.label))
+        print('Loading {} with {} labels.'.format(self.model, self.label))
 
     def initial_sequence(self):
         self.interpreter = make_interpreter(self.model)
