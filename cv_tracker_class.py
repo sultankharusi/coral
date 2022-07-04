@@ -26,7 +26,7 @@ class vision:
         self.interpreter = make_interpreter(self.model)
         self.interpreter.allocate_tensors()
         self.labels = read_label_file(self.label)
-        self.inference_size = input_size(interpreter)
+        self.inference_size = input_size(self.interpreter)
 
     def start_cv(self):
 
