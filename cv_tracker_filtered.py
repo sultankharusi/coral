@@ -28,7 +28,7 @@ def main():
     args = parser.parse_args()
 
     cam_id = args.camera_idx
-    if cam_id.is_numeric():
+    if cam_id.isnumeric():
         cam_id = int(cam_id)
 
     print('Loading {} with {} labels.'.format(args.model, args.labels))
@@ -58,8 +58,10 @@ def main():
                     ll.append(i[1])
                     buf_list.append(ll)
             np_array = np.array(buf_list) # x1,y1,x2,y2, score
-            treks = tracker.update(np_array)
-
+            if buf_list:
+                treks = tracker.update(np_array)
+            else:
+                treks = tracker.update()
         else:
             treks = tracker.update()
         print("Treks", treks)
