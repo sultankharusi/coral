@@ -28,7 +28,7 @@ def main():
     args = parser.parse_args()
 
     cam_id = args.camera_idx
-    if cam_id.is_numeric():
+    if cam_id.isnumeric():
         cam_id = int(cam_id)
 
     print('Loading {} with {} labels.'.format(args.model, args.labels))
