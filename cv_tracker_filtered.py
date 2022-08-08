@@ -30,6 +30,12 @@ def main():
     cam_id = args.camera_idx
     if cam_id.isnumeric():
         cam_id = int(cam_id)
+    
+    with open(default_labels , 'r') as f:
+        clsz = [i.strip('\n') for i in f.readlines()]
+    
+    classes_of_interest = ['car']
+    filtered = [clsz.index(i) for i in classes_of_interest]
 
     print('Loading {} with {} labels.'.format(args.model, args.labels))
     interpreter = make_interpreter(args.model)
@@ -53,7 +59,7 @@ def main():
             # x1,y1,x2,y2, score
             buf_list = []
             for i in objs:
-                if i[0] == 2:    
+                if i[0] in filtered:    
                     ll = list(i[2])
                     ll.append(i[1])
                     buf_list.append(ll)
