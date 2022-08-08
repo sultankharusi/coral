@@ -39,9 +39,7 @@ def main():
 
     print('Loading {} with {} labels.'.format(args.model, args.labels))
     interpreter = make_interpreter(args.model)
-    interpreter2 = make_interpreter(args.model)
     interpreter.allocate_tensors()
-    interpreter2.allocate_tensors()
     labels = read_label_file(args.labels)
     inference_size = input_size(interpreter)
 
@@ -56,7 +54,6 @@ def main():
         cv2_im_rgb = cv2.cvtColor(cv2_im, cv2.COLOR_BGR2RGB)
         cv2_im_rgb = cv2.resize(cv2_im_rgb, inference_size)
         run_inference(interpreter, cv2_im_rgb.tobytes())
-        run_inference(interpreter2, cv2_im_rgb.tobytes())
         objs = get_objects(interpreter, args.threshold)[:args.top_k]
         if objs:
             # x1,y1,x2,y2, score
