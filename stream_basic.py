@@ -5,10 +5,14 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--camera_idx', help='Index of which video source to use. ', default = "0") # camera id 1 is because no 0 in the dev boradss
 args = parser.parse_args()
 #rtsp://admin:AH@198712@192.168.1.88:554/Streaming/channels/2/
+rtsp = "rtsp://admin:Hik12345@192.168.1.64:554/Streaming/channels/1/"
+#rtsp = "http://admin:Hik12345@192.168.1.64:445/doc/page/login.asp?_1660042995178"
 cam_id = args.camera_idx
 
 if cam_id.isnumeric():
 	cam_id = int(cam_id)
+else:
+	cam_id = rtsp
 def main():
 
 	cap = cv2.VideoCapture(cam_id)
