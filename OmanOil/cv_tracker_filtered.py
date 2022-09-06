@@ -37,7 +37,7 @@ def main():
     if cam_id.isnumeric():
         cam_id = int(cam_id)
     
-    with open(default_labels , 'r') as f:
+    with open(default_stream_labels , 'r') as f:
         clsz = [i.strip('\n') for i in f.readlines()]
     
     classes_of_interest = ['Vehicle',"Plate"]
@@ -48,7 +48,8 @@ def main():
     interpreter.allocate_tensors()
     labels = read_label_file(args.labels)
     inference_size = input_size(interpreter)
-
+    
+    print('Loading {} with {} labels.'.format(args.case_model, args.case_labels))
     case_interpreter = make_interpreter(args.case_model)
     case_interpreter.allocate_tensors()
     case_labels = read_label_file(args.case_labels)
