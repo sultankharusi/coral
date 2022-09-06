@@ -22,9 +22,9 @@ def main():
     parser.add_argument('--case_model', help='.tflite case model path',
                         default=os.path.join(default_stream_model_dir,case_model))
     parser.add_argument('--case_labels', help='.tflite case model path',
-                        default=os.path.join(default_stream_model_dir,case_model))
+                        default=os.path.join(default_stream_model_dir,case_model_labels))
     parser.add_argument('--labels', help='label file path',
-                        default=os.path.join(default_stream_model_dir, case_model_labels))
+                        default=os.path.join(default_stream_model_dir, default_stream_labels))
     parser.add_argument('--top_k', type=int, default=3,
                         help='number of categories with highest score to display')
     parser.add_argument('--camera_idx', help='Index of which video source to use. ', default = "1") # camera id 1 is because no 0 in the dev borad
